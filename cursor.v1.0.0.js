@@ -207,6 +207,11 @@ class Node {
         }
     }
 }
-window.onload = function () {
-    new Cursor();
-};
+var cursor;
+window.addEventListener("load",(event) =>{
+    cursor = new Cursor();
+})
+
+function reInitialize(){
+    cursor = new Cursor();
+}
