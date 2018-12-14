@@ -2,6 +2,7 @@ class Cursor {
     constructor() {
         this.nodes = [];
         this.texts = [];
+        this.nodesAnimation = [];
         this.init();
         this.seo();
         this.startAnimation();
@@ -27,8 +28,30 @@ class Cursor {
         for (const i in this.nodes) {
             if (this.nodes.hasOwnProperty(i)) {
                 if (!this.nodes[i].hasAttribute("cursor-before"))
-                    new Node(this.nodes[i], this.texts[i]);
+                    this.nodesAnimation[i] = new Node(this.nodes[i], this.texts[i]);
             }
+        }
+    }
+
+    reInitializeALL() {
+        this.startAnimation();
+    }
+    reInitialize(nodeSelector) {
+        try {
+            let node = document.querySelector(nodeSelector);
+            if(node.hasAttribute("cursor-animate")){
+                let key = this.nodes.indexOf(node);
+                if(key){
+                    this.nodesAnimation[key] = new Node(node,this.texts[key]);
+                }else{
+                    console.log("Unknown Error Occured");
+                }
+            }else{
+                console.log("Node must have \"cursor-animate\" attribute");
+
+            }
+        } catch (error) {
+            console.log("Must provide valid node selector...");
         }
     }
 }
@@ -208,10 +231,10 @@ class Node {
     }
 }
 var cursor;
-window.addEventListener("load",(event) =>{
+window.addEventListener("load", (event) => {
     cursor = new Cursor();
 })
 
-function reInitialize(){
-    cursor = new Cursor();
+function reInitialize() {
+    cursor.reInitialize();
 }
