@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cursor.js |
+    Light weight Javascript library for text writing effect.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/cayman.css">
+  <script src="https://cdn.jsdelivr.net/gh/khushit-shah/Cursor.js@latest/cursor.v1.0.0.min.js" type="text/javascript"></script>
+  <!-- <script src="./cursor.v1.0.0.js"></script> -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <section class="page-header">
+    <h1 class="project-name">Cursor.js</h1>
+    <h2 class="project-tagline">Light weight Javascript library for text writing effect.</h2>
+    <a href="https://github.com/khushit-shah/Cursor.js" class="btn">View on GitHub</a>
+    <a href="https://github.com/khushit-shah/Cursor.js/archive/master.zip" class="btn">Download .zip</a>
+    <a class="btn" href="https://github.com/khushit-shah/Cursor.js" aria-label="Star khushit-shah/Cursor.js on GitHub">Smash
+      the star on github!</a>
+    <a class="btn" href="https://github.com/khushit-shah/Cursor.js/fork"
+      data-size="large" aria-label="Fork khushit-shah/Cursor.js on GitHub">Fork Me!</a>
+  </section>
+
+  <section class="main-content">
+    <h1 id="cursorjs">Cursor.js</h1>
+    <hr>
+
+    <p><strong><em>Light weight Javascript library</em> for text writing effect.</strong></p>
+    <div id="documentation">
+      <h1>Documentation</h1>
+      <hr>
+      <p>Include Javascript file through</p>
+      <div class="highlighter-rouge">
+        <div class="highlight">
+          <pre class="highlight"><code>
+    &lt;script src="https://cdn.jsdelivr.net/gh/khushit-shah/Cursor.js@latest/cursor.v1.0.0.min.js" type="text/javascript"&gt;&lt;/script&gt;
+    </code></pre>
+        </div>
+      </div>
+
+      <p>and then, Just use <code class="highlighter-rouge">cursor-animate</code> in your HTML tag to get <strong>beautiful
+          Animation.</strong>
+        e.g.</p>
+      <div class="highlighter-rouge">
+        <div class="highlight">
+          <pre class="highlight"><code> &lt;p cursor-animate&gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+    </code></pre>
+        </div>
+      </div>
+      <div class="output">
+        <h5>Output</h5>
+        <hr>
+        <p cursor-animate id="output-1">I Love <span style="color:red">GitHub.</span></p>
+        <button class="output-btn" onclick="reInitialize('#output-1');">Re-Animate</button>
+      </div>
+
+
+      <div>
+        <h2>
+          Attributes
+        </h2>
+        <hr>
+        <ul>
+          <li>
+            <h5>Cursor-Animate</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>To Give Natural Typing Animation..</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate&gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+                  </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-animate id="output1">I Love <span style="color:red">GitHub.</span></p>
+              <button class="output-btn" onclick="reInitialize('#output1');">Re-Animate</button>
+            </p>
+          </li>
+          <li>
+            <h5>Cursor-after & cursor-before</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>To Animate Other Element After the Animation of curent Element is over.And not to animate the element
+                which contains cursor-before until the animation of previous element is over.</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate cursor-after="#id1"&gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+                    </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-after="#id1" cursor-animate id="output2">I Love <span style="color:red">GitHub.</span></p>
+              <p cursor-animate cursor-before id="id1">Cursor.js</p>
+              <button class="output-btn" onclick="reInitialize('#output2');reInitialize('#id1');">Re-Animate</button>
+            </p>
+          </li>
+          <li>
+            <h5>Cursor-loop</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>To animate the element over and over again..</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate cursor-loop &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+                    </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-loop cursor-animate id="output3">I Love <span style="color:red">GitHub.</span></p>
+              <button class="output-btn" onclick="reInitialize('#output3');">Re-Animate</button>
+            </p>
+          </li>
+          <li>
+            <h5>cursor-loop-reverse</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>Gives cool writing and erasing animation..</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate cursor-loop-reverse &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+
+                    </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-animate cursor-loop-reverse id="output4">I Love <span style="color:red">GitHub.</span></p>
+              <button class="output-btn" onclick="reInitialize('#output4')">Re-Animate</button>
+            </p>
+          </li>
+          <li>
+            <h5>cursor-speed</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>Defines the average speed of animation.. which varies a little bit to give real typing effect.</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate cursor-speed="4" &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+ &lt;p cursor-animate cursor-speed="5" &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+ &lt;p cursor-animate cursor-speed="6" &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+                    </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-animate cursor-speed="4" id="output5">I Love <span style="color:red">GitHub.</span></p>
+              <p cursor-animate cursor-speed="5" id="output6">I Love <span style="color:red">GitHub.</span></p>
+              <p cursor-animate cursor-speed="6" id="output7">I Love <span style="color:red">GitHub.</span></p>
+              <button class="output-btn" onclick="reInitialize('#output5');reInitialize('#output6');reInitialize('#output7')">Re-Animate</button>
+            </p>
+          </li>
+          <li>
+            <h5>cursor-speed-fixed</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>Defines the fixed speed of animation.</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate cursor-speed="7" &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+ &lt;p cursor-animate cursor-speed="8" &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+ &lt;p cursor-animate cursor-speed="9" &gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;
+ &lt;p cursor-animate cursor-before id="id1">Cursor.js&lt;/p>
+                    </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-animate cursor-speed="7" id="output8">I Love <span style="color:red">GitHub.</span></p>
+              <p cursor-animate cursor-speed="8" id="output9">I Love <span style="color:red">GitHub.</span></p>
+              <p cursor-animate cursor-speed="9" id="output10">I Love <span style="color:red">GitHub.</span></p>
+              <button class="output-btn" onclick="reInitialize('#output8');reInitialize('#output9');reInitialize('#output10')">Re-Animate</button>
+            </p>
+          </li>
+          <li>
+            <h5>cursor-replace-next</h5>
+            <p>
+              <b>Usage:</b>
+              <br>
+              <p>To animate other text after one text is over.Just look at exmple</p>
+              <br>
+              <b>Example</b>
+              <p>
+                <pre class="highlight"><code> &lt;p cursor-animate cursor-replace-next="Cursor.js,made with love,by,Khushit Shah."&gt;I Love &lt;span style="color:red"&gt;GitHub&lt;/span&gt;&lt;/p&gt;                    </code></pre>
+              </p>
+              <b>Output</b>
+              <p cursor-animate cursor-replace-next="Cursor.js,made with love,by,Khushit Shah.">I Love <span style="color:red">GitHub.</span></p>
+              <button class="output-btn" onclick="">Re-Animate</button>
+            </p>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+    <footer class="site-footer">
+      <span class="site-footer-owner"><a href="https://github.com/khushit-shah/Cursor.js">Cursor.js</a> is maintained
+        by
+        <a href="https://github.com/khushit-shah">Khushit Shah</a>.<br>
+        <a class="github-button" href="https://github.com/khushit-shah" data-size="large" aria-label="Follow @khushit-shah on GitHub">Follow
+          me on Github.</a>
+      </span>
+      <span class="site-footer-credits">This page is Hosted By <a href="https://pages.github.com">GitHub Pages</a> with
+        <span style="color:pink">❤</span>.</span>
+    </footer>
+  </section>
+</body>
+
+</html>
