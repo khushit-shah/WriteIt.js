@@ -103,7 +103,10 @@ Node.prototype.destruct = function() {
                     this.text = this.texts[0];
                     this.reverse = !1;
                     this.setTimeout(this.speed);
-                }else{
+                }else if(this.node.hasAttribute('cursor-loop-reverse')){
+                  this.index = this.text.length - 1; this.reverse = !0; this.setTimeout(this.speed);
+                }
+                else{
                          this.interval = setInterval(function() {
                              e.node.innerHTML = e.node.innerHTML == e.text || e.node.innerHTML == e.text + " " ? e.text + "|" : e.text + " "
                          }, 500)
