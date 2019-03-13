@@ -16,5 +16,5 @@ Include Javascript file through
  <p cursor-animate>I Love <span style="color:red">GitHub</span></p>
  ```
 
-More Documentation [here](https://khushit-shah.guthub.io/Cursor.js/).
+More Documentation [here](https://khushit-shah.github.io/Cursor.js/).
 pull requset are more then welcomed!
