@@ -131,6 +131,6 @@ Node.prototype.destruct = function() {
         var t = 1e3 / this.node.getAttribute("cursor-speed");
         this.speed = Math.random() * (t + 100 - (t - 100)) + (t - 100)
     } else this.speed = 150 * Math.random() + 150
-}, window.addEventListener("load", function(t) {
+}, window.onload = () => {
     cursor = new Cursor
-});
+};
