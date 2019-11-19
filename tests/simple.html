@@ -1,0 +1,48 @@
+<!-- CREATE SERVER IN CURSOR.JS DIRECTORY-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CursorJS test 1</title>
+    <style>
+      * {
+        font-family: cursive;
+        font-size: 40px;
+      }
+
+      img {
+        padding: 10px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p cursor-animate cursor-char="KHUSHIT">
+      This is <img src="test1.png" alt="test.png" width="100px" /><span style="color:red"
+        >&copy;</span
+      >
+      animation &copy; test.
+    </p>
+    <p cursor-animate cursor-speed-fixed="15" cursor-loop cursor-char="✈️">
+      This is simple animation test.
+    </p>
+    <p cursor-animate cursor-char="🐱" cursor-loop-reverse cursor-speed="15">
+      This is <img src="test.png" width="100px" /><span style="color:red"
+        >simple &copy;</span
+      >
+      animation &copy; test.
+    </p>
+    <p
+      cursor-animate
+      cursor-speed-fixed="15"
+      cursor-replace-next="this  <span style='color:red'>simple &copy;</span> zero, This is first \, this is still first, this is second"
+    ></p>
+   <!--  <script src="/cursor.js"></script>
+    <script>
+      CursorJS.startAnimation();
+    </script> -->
+  </body>
+</html>

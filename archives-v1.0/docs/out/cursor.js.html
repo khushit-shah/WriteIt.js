@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: cursor.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: cursor.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @license GPL 2.0
+ * @author KhushitShah
+ */
+
+class Cursor {
+  constructor() {
+    /**
+     * @type HTMLElement[]
+     */
+    this.nodes = [];
+    this.init();
+    /**
+     * @type CursorNode[]
+     */
+    this.cursorNodes = [];
+  }
+
+  startAnimation() {
+    this.nodes.forEach(element => {
+      let c = new CursorNode(element);
+      this.cursorNodes.push(c);
+      c.startAnimation();
+    });
+  }
+
+  init() {
+    this.nodes = Array.from(document.querySelectorAll("*[cursor-animate]"));
+    this.seo();
+
+    // Automatically start Animation if cursor-auto-start attribute is present,
+    // this is not related with the animation of node
+    // but, it starts parsing each node which has "cursor-animate"
+
+    if (document.querySelector("*[cursor-auto-start]")) {
+      this.startAnimation();
+    }
+  }
+
+  /**
+   * Adds a Cloned Hidden Node to html for SEO optimization, as
+   * The original node text is going to change.
+   */
+  seo() {
+    this.nodes.forEach(element => {
+      const newELement = element.cloneNode(true);
+      newELement.style.display = "none";
+      element.parentNode.appendChild(newELement);
+    });
+  }
+}
+
+class CursorNode {
+  /**
+   * Creates A Node to Animate.
+   * @param {HTMLElement} node
+   * @param {boolean} _fromAnotherNode
+   */
+  constructor(node, _fromAnotherNode) {
+    /**
+     * @type RegExp
+     * Looks for a comma after any character.
+     */
+    this.commaSepReg = /,(?!\\)/;
+    if (node == undefined || node == null) {
+      throw new Error("Node must be a valid HTML tag");
+    }
+    this.node = node;
+    this.fromAnotherNode = _fromAnotherNode;
+    this.init();
+  }
+
+  init() {
+    if (this.node.hasAttribute("cursor-char")) {
+      this.cursorChar = this.node.getAttribute("cursor-char");
+    } else {
+      this.cursorChar = "|";
+    }
+    if (this.node.hasAttribute("cursor-replace-next")) {
+      let a = this.node.getAttribute("cursor-replace-next");
+      console.log(
+        a
+          .split("")
+          .reverse()
+          .join("")
+      );
+      this.texts = this.node
+        .getAttribute("cursor-replace-next")
+        .split("")
+        .reverse()
+        .join("")
+        .split(this.commaSepReg)
+        .map(s =>
+          s
+            .split("")
+            .reverse()
+            .join("")
+            .replace("\\,", ",")
+        )
+        .reverse();
+      this.text = this.texts[0];
+      this.textsIndex = 0;
+    } else {
+      this.text = this.node.innerHTML;
+    }
+    this.text = this.text.trim();
+    this.speed = 0;
+    this.index = 0;
+    this.reverse = false;
+    this.setSpeed();
+  }
+
+  /**
+   * Sets a speed for the animation.
+   * If cursor-speed-* is present than it uses that,
+   * otherwise uses default speed of "6.5±1" letters/second.
+   */
+  setSpeed() {
+    this.speed = 1000 / (Math.random() * (7.5 - 5.5) + 5.5); // Time in millis to write one letter.
+    if (this.node.hasAttribute("cursor-speed-fixed")) {
+      this.speed =
+        1000 / parseFloat(this.node.getAttribute("cursor-speed-fixed"));
+    } else if (this.node.hasAttribute("cursor-speed")) {
+      this.speed =
+        1000 /
+        (Math.random() * 3 +
+          (parseFloat(this.node.getAttribute("cursor-speed")) - 1));
+    }
+  }
+
+  /**
+   * Starts Animation according to factors like delay, before element etc.
+   */
+  startAnimation() {
+    let delay = 0;
+    if (this.fromAnotherNode || !this.node.hasAttribute("cursor-has-prev")) {
+      this.node.innerHTML = this.cursorChar;
+      if (this.node.hasAttribute("cursor-start-delay")) {
+        delay = 1000 * parseFloat(this.node.getAttribute("cursor-start-delay"));
+      }
+    } else {
+      // Element has "cursor-has-prev" attribute So, Don't start animating.
+      return;
+    }
+    this.setTimeout(this.animate, delay);
+  }
+
+  /**
+   * Adds/Removes a letter from "html";
+   */
+  animate() {
+    // Browser may have added ending tag so ignore it.
+    let str = this.node.innerHTML.substring(0, this.index);
+
+    // Remove the cursorChar.
+    str = str.substr(0, str.length - this.cursorChar.length);
+
+    // Add HTML without cursor.
+    this.node.innerHTML = str;
+
+    // If reverse remove a character from last.
+    if (this.reverse) {
+      // We are at start of  the string.
+      if (str.length &lt;= 0) {
+        this.handleIterationEnd();
+        return;
+      }
+      let chrToRemove = str.substr(str.length - 1, 1);
+      if (chrToRemove == ">") {
+        // Go back until next &lt; is found.
+        chrToRemove = this.text.substring(
+          str.length,
+          str.lastIndexOf("&lt;", str.length)
+        );
+        str = str.substr(0, str.length - chrToRemove.length);
+        this.index -= chrToRemove.length;
+      } else {
+        str = str.substring(0, str.length - 1);
+        this.index--;
+      }
+    } else {
+      if (str.length >= this.text.length) {
+        // We are at End in the string.
+        this.handleIterationEnd();
+        return;
+      }
+      // Add a letter to the last.
+      let chrToAdd = this.text.substr(str.length, 1);
+
+      if (chrToAdd == "&lt;") {
+        // Take everything until ">".
+        chrToAdd = this.text.substring(
+          str.length,
+          this.text.indexOf(">", str.length) + 1
+        );
+      }
+
+      this.index += chrToAdd.length;
+
+      str = str + chrToAdd;
+    }
+
+    // Add cursor at the end.
+    str += this.cursorChar;
+
+    // Update the InnerHTML
+    this.node.innerHTML = str;
+    this.nextIteration();
+  }
+
+  /**
+   * Gets Executed after animation is over,
+   * It decides whether to rerun or reverse or call animation of another element.
+   */
+  handleIterationEnd() {
+    if (this.reverse) {
+      // Check if it has "cursor-replace-next", then replace text with next text.
+      if (this.node.hasAttribute("cursor-replace-next")) {
+        // If we are already at the last position.
+        if (this.textsIndex >= this.texts.length) {
+          // Start from first if it has cursor-loop.
+          if (this.node.hasAttribute("cursor-loop")) {
+            this.node.innerHTML = this.cursorChar;
+            this.text = this.texts[0];
+            this.textsIndex = 0;
+            this.reverse = false; // Now we are going forward.
+            this.setTimeout(this.animate, this.speed);
+          }
+        } else {
+          // Just increment the textsIndex.
+          this.text = this.texts[++this.textsIndex];
+          this.trigerNextAnimation(false, 0, true);
+        }
+      }
+    } else {
+      if (this.node.hasAttribute("cursor-replace-next")) {
+        // Current Text has been writtern, Start reverse.
+        // if this is last text and node don't conatains cursor-loop then stop.
+        if (
+          this.textsIndex == this.texts.length - 1 &amp;&amp;
+          !this.node.hasAttribute("cursor-loop")
+        ) {
+          this.animationEnd();
+          return;
+        } else {
+          this.trigerNextAnimation(true);
+        }
+      } else if (this.node.hasAttribute("cursor-loop")) {
+        this.trigerNextAnimation(false, 0, true);
+      } else {
+        // Add Simple Blinking cursor animation.
+        this.animationEnd();
+      }
+    }
+  }
+
+  /**
+   * Handles end of the animation of element, starts last blinking cursor or trigers animation of another elements.
+   */
+  animationEnd() {
+    if (this.node.hasAttribute("cursor-next")) {
+      // Go through all of them and start them.
+      let elem = this.node.getAttribute("cursor-next").split(",");
+      elem.forEach(e => {
+        let node = document.querySelector(e);
+        new CursorNode(node, true).startAnimation();
+      });
+    } else {
+      this.lastCursorBlinkAnimation();
+    }
+  }
+  /**
+   * @param {boolean} reverse wether animation is reverse or forward.
+   * @param {integer} _index (optional) decides wether to set index.
+   * @param {boolean} _reInitNode (optional) decides wether to set node.innerHTML with cursorChar.
+   */
+  trigerNextAnimation(reverse, _index, _reInitNode) {
+    this.reverse = reverse;
+    this.index = _index ? _index : this.index;
+    this.node.innerHTML = _reInitNode ? this.cursorChar : this.node.innerHTML;
+    this.setTimeout(this.animate, this.speed);
+  }
+
+  /**
+   * Keeps blinking cursor for infinity.
+   */
+  lastCursorBlinkAnimation() {
+    this.setInterval(() => {
+      if (this.node.innerHTML == this.text) {
+        this.node.innerHTML = this.text + this.cursorChar;
+      } else {
+        this.node.innerHTML = this.text;
+      }
+    }, 500);
+  }
+
+  /**
+   * Resets the speed and calls the animate function as per delay
+   */
+  nextIteration() {
+    this.setSpeed();
+    this.setTimeout(this.animate, this.speed);
+  }
+  setInterval(method, delay) {
+    return setInterval(method.bind(this), delay);
+  }
+  setTimeout(method, delay) {
+    return setTimeout(method.bind(this), delay);
+  }
+}
+const CursorJS = new Cursor();
+console.log("Cursor.js loaded!👍");
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Cursor.html">Cursor</a></li><li><a href="CursorNode.html">CursorNode</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Oct 25 2019 22:47:45 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
