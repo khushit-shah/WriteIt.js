@@ -1,20 +1,22 @@
 # Cursor.js
-**_Light weight Javascript library_ for text writing effect.**
+Cursor.js is lightweight javascript library for text-writing/type-writing effect.
 
-Include Javascript file through
-```
-<head>
-<!--- Your Code --->
-<script src="https://cdn.jsdelivr.net/gh/khushit-shah/Cursor.js@latest/cursor.v1.0.0.min.js" type="text/javascript"></script>
-<!--- Your Code --->
-</head>
-```
 
- and then, Just use `cursor-animate` in your HTML tag to get **beautiful Animation.**
- e.g.
- ```
- <p cursor-animate>I Love <span style="color:red">GitHub</span></p>
- ```
+# Installation
+    - Download .zip file and extract cursor.js to your javascript folder and add
+    '''
+        <head>
+            <script src="/path/to/cursor.js"></cursor.js>
+        </head>
+    '''
+# TODO
+    - Documentation.
+    - NPM and YARN installation.
+    - CDN Creation.
 
-More Documentation [here](https://khushit-shah.github.io/Cursor.js/).
-pull requset are more then welcomed!
+# Issue Template.
+    - Short Description.
+    - Browser Information.
+    - Console Errors.
+    - Expected Behaviour.
+    - If you want new functionality, Add it to title.
