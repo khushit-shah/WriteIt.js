@@ -1,22 +1,23 @@
 # Cursor.js
-Cursor.js is lightweight javascript library for text-writing/type-writing effect.
+**_Cursor.js is lightweight javascript library for text-writing/type-writing effect_**.
 
 
 # Installation
-    - Download .zip file and extract cursor.js to your javascript folder and add
-    '''
+- Download .zip file and extract cursor.js to your javascript folder and add
+
+```
         <head>
             <script src="/path/to/cursor.js"></cursor.js>
         </head>
-    '''
+```
 # TODO
-    - Documentation.
-    - NPM and YARN installation.
-    - CDN Creation.
+- [ ] Documentation.
+- [ ] NPM and YARN installation.
+- [ ] CDN Creation.
 
-# Issue Template.
-    - Short Description.
-    - Browser Information.
-    - Console Errors.
-    - Expected Behaviour.
-    - If you want new functionality, Add it to title.
+# Issue Template
+- Short Description.
+- Browser Information.
+- Console Errors.
+- Expected Behaviour.
+- If you want new functionality, Add it to title.
