@@ -5,9 +5,9 @@
 # Installation
 - Download .zip file and extract cursor.js to your javascript folder and add
 
-```
+```html
         <head>
-            <script src="/path/to/cursor.js"></cursor.js>
+            <script src="/path/to/cursor.js"></script>
         </head>
 ```
 # TODO
