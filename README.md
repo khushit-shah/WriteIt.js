@@ -11,7 +11,9 @@
         </head>
 ```
 # TODO
+- [ ] functionality to start animation from javascript(i.e. start animation when user scroll etc.).
 - [ ] Documentation.
+- [ ] Minification.
 - [ ] NPM and YARN installation.
 - [ ] CDN Creation.
 
