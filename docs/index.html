@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>WriteIt.js Docs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
+    <link rel="stylesheet" href="/assets/css/styles.min.css?h=49b14f0bd2336883443694f564b76166">
+    <link rel="stylesheet"
+        href="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<body>
+    <!-- Start: Header Blue -->
+    <div>
+        <!-- Start: Header -->
+        <div class="header-blue">
+            <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+                <div class="container-fluid"><a class="navbar-brand" href="#">WriteIt.js</a><button
+                        data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span
+                            class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="#">Docs</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="#">Examples</a></li>
+                        </ul><a class="btn btn-light action-button ml-md-auto" role="button"><i
+                                class="fa fa-star"></i>&nbsp; GitHub&nbsp;</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="container hero">
+                <div class="row text-center ">
+                    <!-- Start: Text -->
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <h1>You will not find better!</h1>
+                        <p><strong>Light weight</strong> JavaScript library for text writing effect, with complete
+                            <strong>attribute based system</strong>!&nbsp;<br><strong>A JavaScript free library for
+                                you</strong>.<br><br></p><button
+                            class="btn btn-light active btn-lg text-truncate text-center action-button"
+                            data-bs-hover-animate="bounce" type="button"><i class="fas fa-angle-down"></i></button>
+                    </div>
+                    <!-- End: Text -->
+                </div>
+            </div>
+        </div>
+        <!-- End: Header -->
+    </div>
+    <!-- End: Header Blue -->
+    <!-- Start: Article Clean -->
+    <div class="article-clean">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                    <!-- Start: Intro -->
+                    <div class="intro">
+                        <h1 class="text-monospace text-center">Documentation</h1>
+                    </div>
+                    <!-- End: Intro -->
+                    <!-- Start: Text -->
+                    <div class="text">
+                        <h2 class="text-monospace"># Geting Started!</h2>
+                        <p class="text-monospace">WriteIt.js can be downloaded from <a href="#">here</a>, Or you can use
+                            jsDelivr CDN.<br>Place the following script tag at the end of body tag.<br></p>
+                        <pre><code class="language-html">&lt;script src='https://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js@version/writeit.min.js'&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                    <!-- End: Text -->
+
+                    <!-- Start: Text -->
+                    <div class="text text-monospace">
+                        <h2 class="text-monospace"># Functionalities!</h2>
+                        <p class="text-monospace">WriteIt.js follows attribute based system, you can define a animation by adding attribute. Combine multiple attributes and get different animations.<br></p>
+                        <ul>
+                            <li><h6>writeit-animate</h6></li>
+                            <li><h6>writeit-auto-start</h6></li>
+                            <li><h6>writeit-char</h6></li>
+                            <li><h6>writeit-replace-next</h6></li>
+                            <li><h6>writeit-speed</h6></li>
+                            <li><h6>writeit-speed-fixed</h6></li>
+                            <li><h6>writeit-start-delay</h6></li>
+                            <li><h6>writeit-loop</h6></li>
+                            <li><h6>writeit-next</h6></li>
+                            <li><h6>writeit-has-prev</h6></li>
+                            <li><h6>writeit-hidden</h6></li>
+                            <li><h6>writeit-no-blink</h6></li>
+                            <li><h6>writeit-loop-reverse</h6></li>
+                            <li><h6>writeit-wait-in-reverse</h6></li>
+                            <li><h6>writeit-write-all-in-reverse</h6></li>
+                        </ul>
+                    </div>
+                    <!-- End: Text -->
+                    <div class="text text-monospace">
+                        <h3># writeit-animate </h3>
+                        <p>It animates the element for once and then animates infinite blinking cursor.</p>
+                        <pre><code><p writeit-animate>Made with Love 💖</p></code></pre>
+                        <p id='ex1' writeit-animate>Made with Love 💖</p>
+                        <button class="button-primary" onclick="WriteItJS.startAnimationOfNode('#ex1')">Re-Animate</button>
+                    </div>
+                </div>
+                <!-- End: Text -->
+            </div>
+        </div>
+    </div>
+    <!-- End: Article Clean -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
+    <script src="/assets/js/script.min.js?h=82d712d5e0811380f26d2753ca68c860"></script>
+    <script src="http://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js/writeit.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
