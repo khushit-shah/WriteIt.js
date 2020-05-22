@@ -305,7 +305,7 @@ class WriteItNode {
       let nodes = this.node.getAttribute(WriteItJS.WRITEIT_NEXT).split(",");
       nodes.forEach(node => {
         let curNode = WriteItJS.findNode(node);
-        if (curNode) {curNode.stopAnimation(); curNode.init(); }
+        if (curNode) { curNode.stopAnimation(); curNode.init(); }
       });
     }
     this.timeout = this.setTimeout(this.animate, delay);
@@ -344,17 +344,25 @@ class WriteItNode {
     if (this.waitIndex[this.textsIndex == -1 ? "default" : this.textsIndex][this.index] != undefined && this.wait == false && (!this.reverse || this.node.hasAttribute(WriteItJS.WRITEIT_WAIT_IN_REVERSE))) {
       let waitingTime = this.waitIndex[this.textsIndex == -1 ? "default" : this.textsIndex][this.index];
       this.wait = true;
-      this.node.innerHTML = this.text.substring(0, this.index + 1) + this.writeitChar;
-      this.index++;
+      this.node.innerHTML = this.text.substring(0, this.index + (this.reverse ? -1 : 1)) + this.writeitChar;
+      this.index += this.reverse ? -1 : 1;
       this.timeout = this.setTimeout(() => { this.wait = false; this.animate(); }, waitingTime * 1000);
       return;
     } else if (this.wait == true) {
       return;
     }
-    if (this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && ((!this.reverse && this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] > this.index) || (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE) && this.writeAllTextAtOnceIndex[this.index] < this.index))) {
-      this.node.innerHTML = this.text.substring(0, this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] - 1);
-      this.index = this.node.innerHTML.length + 1;
-      this.node.innerHTML += this.writeitChar;
+    console.log(this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index + 1]);
+    if (this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && ((!this.reverse && this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] > this.index) || (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE) && this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index + 1] < this.index))) {
+      console.log("here");
+      if (!this.reverse) {
+        this.node.innerHTML = this.text.substring(0, this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] - 1);
+        this.index = this.node.innerHTML.length + 1;
+        this.node.innerHTML += this.writeitChar;
+      } else {
+        this.node.innerHTML = this.text.substring(0, this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] - 1);
+        this.index = this.node.innerHTML.length + 1;
+        this.node.innerHTML += this.writeitChar;
+      }
       this.wait = true;
       this.timeout = this.setTimeout(() => { this.wait = false; this.animate(); }, this.speed);
       return;

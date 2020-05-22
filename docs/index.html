@@ -15,9 +15,39 @@
     <link rel="stylesheet"
         href="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        .block {
+            background-color: rgb(220, 220, 220);
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .codeblock {
+            background-color: rgb(200, 200, 200);
+        }
+
+        .text>p {
+            padding: 10px 0px;
+        }
+
+        .codeblock>.btn {
+            margin: 10px;
+        }
+
+        pre code {
+            margin: 5px 10px;
+        }
+
+        .ex {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 5px;
+            margin: 10px;
+            background-color: rgb(190, 190, 190);
+        }
+    </style>
 </head>
 
-<body>
+<body writeit-autostart>
     <!-- Start: Header Blue -->
     <div>
         <!-- Start: Header -->
@@ -64,8 +94,9 @@
                     </div>
                     <!-- End: Intro -->
                     <!-- Start: Text -->
-                    <div class="text">
+                    <div class="text block">
                         <h2 class="text-monospace"># Geting Started!</h2>
+                        <hr>
                         <p class="text-monospace">WriteIt.js can be downloaded from <a href="#">here</a>, Or you can use
                             jsDelivr CDN.<br>Place the following script tag at the end of body tag.<br></p>
                         <pre><code class="language-html">&lt;script src='https://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js@version/writeit.min.js'&gt;&lt;/script&gt;</code></pre>
@@ -73,37 +104,323 @@
                     <!-- End: Text -->
 
                     <!-- Start: Text -->
-                    <div class="text text-monospace">
+                    <div class="text text-monospace block">
                         <h2 class="text-monospace"># Functionalities!</h2>
-                        <p class="text-monospace">WriteIt.js follows attribute based system, you can define a animation by adding attribute. Combine multiple attributes and get different animations.<br></p>
+                        <hr>
+                        <p class="text-monospace">WriteIt.js follows attribute based system, you can define a animation
+                            by adding attribute. Combine multiple attributes and get different animations.<br></p>
                         <ul>
-                            <li><h6>writeit-animate</h6></li>
-                            <li><h6>writeit-auto-start</h6></li>
-                            <li><h6>writeit-char</h6></li>
-                            <li><h6>writeit-replace-next</h6></li>
-                            <li><h6>writeit-speed</h6></li>
-                            <li><h6>writeit-speed-fixed</h6></li>
-                            <li><h6>writeit-start-delay</h6></li>
-                            <li><h6>writeit-loop</h6></li>
-                            <li><h6>writeit-next</h6></li>
-                            <li><h6>writeit-has-prev</h6></li>
-                            <li><h6>writeit-hidden</h6></li>
-                            <li><h6>writeit-no-blink</h6></li>
-                            <li><h6>writeit-loop-reverse</h6></li>
-                            <li><h6>writeit-wait-in-reverse</h6></li>
-                            <li><h6>writeit-write-all-in-reverse</h6></li>
+                            <li>
+                                <h6>writeit-animate</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-autostart</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-char</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-replace-next</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-speed</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-speed-fixed</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-start-delay</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-loop</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-loop-reverse</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-next</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-has-prev</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-hidden</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-no-blink</h6>
+                            </li>
+                            <li>
+                                <h6>$`` and ${}</h6>
+                            </li>
+                            <li>
+                                <h6>writeit-wait-in-reverse and writeit-write-all-in-reverse</h6>
+                            </li>
+                            <li>
+                                <h6>javascript functions</h6>
+                            </li>
                         </ul>
                     </div>
                     <!-- End: Text -->
-                    <div class="text text-monospace">
-                        <h3># writeit-animate </h3>
+                    <!-- <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-animate </h2>
+                        <hr>
                         <p>It animates the element for once and then animates infinite blinking cursor.</p>
-                        <pre><code><p writeit-animate>Made with Love 💖</p></code></pre>
-                        <p id='ex1' writeit-animate>Made with Love 💖</p>
-                        <button class="button-primary" onclick="WriteItJS.startAnimationOfNode('#ex1')">Re-Animate</button>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-animate&gt;Made with Love 💖&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex1' writeit-animate>Made with Love 💖</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex1')">Re-Animate</button>
+                        </div>
+                    </div>
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-autostart </h2>
+                        <hr>
+                        <p>It automatically starts animation of all the elements with writeit-*, you can define it in
+                            any tag </p>
+                        <pre><code class="language-html">&lt;body writeit-autostart&gt;..body..&lt;/body&gt;</code></pre>
+                        <p>You can also start animation of all elements with javascript.</p>
+                        <pre><code class="language-html">&lt;script&gt;WriteItJS.startAnimation()&lt;/script&gt;</code></pre>
+                    </div>
+
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-char </h2>
+                        <hr>
+                        <p>It defines the cursor character.</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-char="🙂" writeit-animate&gt;Always smile!&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex2' writeit-char='🙂' writeit-animate>Always smile!</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex2')">Re-Animate</button>
+                        </div>
+                        <p>You can set cursor to any valid html.</p>
+                        <div class="codeblock">
+
+                            <pre><code class="language-html">&lt;p writeit-char="&lt;span style='color:red'>RED&lt;/span>" writeit-animate&gt;Always smile!&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex3' writeit-char="<span style='color:red;'>RED</span>" writeit-animate>
+                                redrrrr</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex3')">Re-Animate</button>
+                        </div>
+                        <p>Or even an image :)</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-char="&lt;img src='/assets/img/sample.jpeg' width='16px'&gt;" writeit-animate&gt;Iron Man!&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex4' writeit-char="<img src='/assets/img/sample.jpeg' width='16px'>"
+                                writeit-animate>Iron Man!</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex4')">Re-Animate</button>
+                        </div>
+                    </div>
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-replace-next </h2>
+                        <hr>
+                        <p>Animates different words/senteces on same element. It first animates elements inner-text then
+                            it
+                            will check for <b>writeit-replace-next</b> attribute, if present it will animate them</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-replace-next="By,Khushit Shah" writeit-animate&gt;Made With Love!&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex5' writeit-replace-next='By,Khushit Shah' writeit-animate>Made with
+                                Love!</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex5')">Re-Animate</button>
+                        </div>
+                        <p>You can add ',' into sentences by \,</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-replace-next="first\, still first, second" writeit-animate&gt;arrays start from zero&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex6' writeit-replace-next='first\, still first,second' writeit-animate writeit-speed='9'>Array starts from zero</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex6')">Re-Animate</button>
+                        </div>
+                    </div>
+
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-speed </h2>
+                        <hr>
+                        <p>Defines time in millis to animate in/out one character. If not defined uses random speed
+                            between 5.5-7.5ms per character. Animation speed may differ by ± 1 to give realistic typing
+                            effect</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-speed='7' writeit-animate&gt;Made With Love!&lt;/p&gt;
+&lt;p writeit-speed='8.4' writeit-animate&gt;Made With Love!&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex7' writeit-speed='7' writeit-animate>Made with Love!</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex7')">Re-Animate</button>
+                            <p class="ex" id='ex8' writeit-speed='8.4' writeit-animate>Made with Love!</p>
+
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex8')">Re-Animate</button></div>
+                        </div>
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-speed-fixed </h2>
+                        <hr>
+                        <p>Defines fixed time in millis to animate in/out one character, all characters will be animated at same rate.</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-speed-fixed='7' writeit-animate&gt;Made With Love!&lt;/p&gt;
+&lt;p writeit-speed-fixed='8.4' writeit-animate&gt;Made With Love!&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex9' writeit-speed-fixed='7' writeit-animate>Made with Love!</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex9')">Re-Animate</button>
+                            <p class="ex" id='ex10' writeit-speed-fixed='8.4' writeit-animate>Made with Love!</p>
+
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex10')">Re-Animate</button></div>
+                        </div>
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-start-delay </h2>
+                        <hr>
+                        <p>Starts the animation after some specified delay in seconds.</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-start-delay='5' writeit-animate&gt;Take a deep breath for 5 seconds&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex11' writeit-start-delay='5' writeit-animate>Take a deep breath for 5 seconds</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex11')">Re-Animate</button>
+                        </div>
+                    </div>
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-loop </h2>
+                        <hr>
+                        <p>Continously loops the same animation.</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-loop writeit-animate&gt;loop loop loop&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex12' writeit-loop writeit-animate>loop loop loop</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex12')">Re-Animate</button>
+                        </div>
+
+                        <p>You can use writeit-loop with writeit-replace-next</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-loop writeit-replace-next='Hello, World!' writeit-animate&gt;Hello&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex13' writeit-loop writeit-replace-next='Hello, World!' writeit-animate>Hello</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex13')">Re-Animate</button>
+                        </div>
+                        <p>So, it continously repeats the animation for infinity.</p>
+                    </div>
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-loop-reverse </h2>
+                        <hr>
+                        <p>Continously loops the same animation and also adds erasing animation.</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-animate&gt;reverse loop loop loop&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex14' writeit-loop-reverse writeit-animate>reverse loop loop loop</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex14')">Re-Animate</button>
+                        </div>
+
+                        <p>You can use writeit-loop-reverse with writeit-replace-next</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-replace-next='Hello, World!' writeit-animate&gt;Hello&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex15' writeit-loop-reverse writeit-replace-next='Hello, World!' writeit-animate>Hello</p>
+                            <button class="btn btn-primary"
+                                onclick="WriteItJS.startAnimationOfNode('#ex15')">Re-Animate</button>
+                        </div>
+                        <p>NOTE: writeit-loop or writeit-loop-reverse will only animate inner text of elements with writeit-replace-next attribute once.</p>
+                    </div>
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-next & writeit-has-prev </h2>
+                        <hr>
+                        <p> Animates other elements after the current element is animated, it takes the selector for next elements seperated bu ',' as value</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-next='#p1' writeit-animate&gt;It will start animation of another element&lt;/p&gt;
+&lt;p id='p1' writeit-animate&gt;This will ne messed up...&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex16' writeit-next='#p1' writeit-animate>It will start animation of another element</p>
+                            <p class="ex" id='p1' writeit-animate>This will be messed up...</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex16')">Re-Animate</button>
+                        </div>                        
+                        <p>It gets messed up becouse animation of #p1 is already running and it starts animating the same node again So, we need to prevent #p1 from animating until it is from other element or startAnimationOfNode('#p1') is explicitly called. We can use <b>writeit-has-prev</b> or <b> don't add writeit-animate</b> attribute.</b></p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-next='#p2' writeit-animate&gt;It will start animation of another element&lt;/p&gt;
+&lt;p id='p2' writeit-has-prev writeit-animate&gt;This will work fine&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex17' writeit-next='#p2' writeit-animate>It will start animation of another element</p>
+                            <p class="ex" id='p2' writeit-has-prev writeit-animate>This will be work fine</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex17')">Re-Animate</button>
+                        </div>
+                        <p>Starting animation of multiple nodes</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-next='#p,#q' writeit-animate&gt;It will start animation of another element&lt;/p&gt;
+&lt;p id='p' writeit-has-prev writeit-animate&gt;this Works&lt;/p&gt;
+&lt;p id='q' writeit-has-prev writeit-animate&gt;this Works&lt;/p&gt;
+</code></pre>
+
+<p class="ex" id='ex19' writeit-next='#p,#q' writeit-animate>It will start animation of another element</p>
+                            <p class="ex" id='p' writeit-has-prev writeit-animate>This Works</p>
+                            <p class="ex" id='q' writeit-has-prev writeit-animate>This Works</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex19')">Re-Animate</button>
+                        </div>
+                    </div>
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-hidden </h2>
+                        <hr>
+                        <p> As you show in previous example next element is shown while the previous element is animating,</p>
+                        <p> writeit-hidden can be used to hide an element until its animation is not started</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-next='#p2' writeit-animate&gt;It will start animation of another element&lt;/p&gt;
+&lt;p id='p3' writeit-hidden writeit-has-prev writeit-animate&gt;This is invisible&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex18' writeit-next='#p3' writeit-animate>It will start animation of another element</p>
+                            <p class="ex" id='p3' writeit-hidden writeit-has-prev writeit-animate>This is invisible</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex18')">Re-Animate</button>
+                        </div>
+                    </div>
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-no-blink </h2>
+                        <hr>
+                        <p> Does not animate infinite blinking cursor at the end! </p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-no-blink writeit-animate&gt;No blinking cursor 😱️ &lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex20' writeit-no-blink writeit-animate>No blinking cursor 😱️</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex20')">Re-Animate</button>
+                        </div>
+                    </div>
+                    
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># $`` and ${} </h2>
+                        <hr>
+                        <p> All the text into $`` will not be animated and will be writtern in one throw.</p>
+                        <p> ${second} will will pause the animation of given element for specified time.</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-animate&gt;This is fast, wait${3},$`Finish`&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex21'writeit-animate>This is fast, wait ${3} $`Finished!`</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex21')">Re-Animate</button>
+                        </div>
+                    </div> -->
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit-wait-in-reverse and writeit-write-all-in-reverse </h2>
+                        <hr>
+                        <p> if writeit-wait-in reverse is specified,  animation will also get affected by ${} in reverse mode.</p>
+                        <p> if writeit-write-all-in-reverse is specified,  animation will also get affected by $`` in reverse mode.</p>
+                        <p>wihtout attributes</p>
+                        <!-- <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-animate&gt;This is fast, wait${3},$`Finish`&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex22' writeit-loop-reverse writeit-animate>This is fast, wait ${3} $`Finished!`!</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex22')">Re-Animate</button>
+                        </div> -->
+                        <p>With attributes</p>
+                        <div class="codeblock">
+                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-wait-in-reverse writeit-write-all-in-reverse writeit-animate&gt;This is fast, wait${3},$`Finish`&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex23' writeit-loop-reverse writeit-write-all-in-reverse writeit-wait-in-reverse writeit-animate>This is fast, wait ${3} $`Finished!`!</p>
+                            <button class="btn btn-primary"
+                            onclick="WriteItJS.startAnimationOfNode('#ex23')">Re-Animate</button>
+                        </div>
                     </div>
                 </div>
+
+                </div>
                 <!-- End: Text -->
+            </div>
+
             </div>
         </div>
     </div>
@@ -112,7 +429,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
     <script src="/assets/js/script.min.js?h=82d712d5e0811380f26d2753ca68c860"></script>
-    <script src="http://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js/writeit.js"></script>
+    <script src="/assets/js/WriteIt.js"></script>
 
     <script>hljs.initHighlightingOnLoad();</script>
 </body>
