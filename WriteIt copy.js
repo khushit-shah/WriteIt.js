@@ -368,10 +368,6 @@ class WriteItNode {
         this.node.innerHTML += this.writeitChar;
         this.index = this.node.innerHTML.length;
       }
-      console.log(this.index, this.text.length, this.text);
-      if(this.index <= 0 || this.index >= this.text.length) {
-        this.handleIterationEnd();
-      }
     }
 
     // if (this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && ((!this.reverse && this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] > this.index) || (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE) && this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index + 1] < this.index))) {

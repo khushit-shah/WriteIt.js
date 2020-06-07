@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
-    <link rel="stylesheet" href="/assets/css/styles.min.css?h=49b14f0bd2336883443694f564b76166">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css?h=18313f04cea0e078412a028c5361bd4e">
+    <link rel="stylesheet" href="assets/css/styles.min.css?h=49b14f0bd2336883443694f564b76166">
     <link rel="stylesheet"
         href="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -44,6 +44,9 @@
             margin: 10px;
             background-color: rgb(190, 190, 190);
         }
+        body {
+            overflow-x: hidden!important;
+        }
     </style>
 </head>
 
@@ -53,7 +56,7 @@
         <!-- Start: Header -->
         <div class="header-blue">
             <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-                <div class="container-fluid"><a class="navbar-brand" href="#">WriteIt.js</a><button
+                <div class="container-fluid"><a writeit-animate="" class="navbar-brand"">WriteIt.js</a><button
                         data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span
                             class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navcol-1">
@@ -69,7 +72,7 @@
                 <div class="row text-center ">
                     <!-- Start: Text -->
                     <div class="col-12 col-lg-12 col-xl-12">
-                        <h1>You will not find better!</h1>
+                        <h1 writeit-speed="15" writeit-animate writeit-replace-next="for <b>Sure</b>, THE BEST JAVASCRIPT TEXT WRITING LIBRARY">You will not find better!</h1>
                         <p><strong>Light weight</strong> JavaScript library for text writing effect, with complete
                             <strong>attribute based system</strong>!&nbsp;<br><strong>A JavaScript free library for
                                 you</strong>.<br><br></p><button
@@ -85,7 +88,7 @@
     <!-- End: Header Blue -->
     <!-- Start: Article Clean -->
     <div class="article-clean">
-        <div class="container">
+        <div class="container-flex">
             <div class="row">
                 <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                     <!-- Start: Intro -->
@@ -107,8 +110,9 @@
                     <div class="text text-monospace block">
                         <h2 class="text-monospace"># Functionalities!</h2>
                         <hr>
-                        <p class="text-monospace">WriteIt.js follows attribute based system, you can define a animation
-                            by adding attribute. Combine multiple attributes and get different animations.<br></p>
+                        <p class="text-monospace">WriteIt.js follows attribute based system, you can define an animation
+                            by adding attributes. Combine multiple attributes and get different animations.<br></p>
+                        <p class="text-monospace">Following are all the attribute supported!<br></p>
                         <ul>
                             <li>
                                 <h6>writeit-animate</h6>
@@ -156,12 +160,12 @@
                                 <h6>writeit-wait-in-reverse and writeit-write-all-in-reverse</h6>
                             </li>
                             <li>
-                                <h6>javascript functions</h6>
+                                <h6>javascript API</h6>
                             </li>
                         </ul>
                     </div>
                     <!-- End: Text -->
-                    <!-- <div class="text text-monospace block">
+                    <div class="text text-monospace block">
                         <h2 class="text monospace"># writeit-animate </h2>
                         <hr>
                         <p>It animates the element for once and then animates infinite blinking cursor.</p>
@@ -220,8 +224,7 @@
                             will check for <b>writeit-replace-next</b> attribute, if present it will animate them</p>
                         <div class="codeblock">
                             <pre><code class="language-html">&lt;p writeit-replace-next="By,Khushit Shah" writeit-animate&gt;Made With Love!&lt;/p&gt;</code></pre>
-                            <p class="ex" id='ex5' writeit-replace-next='By,Khushit Shah' writeit-animate>Made with
-                                Love!</p>
+                            <p class="ex" id='ex5' writeit-replace-next='By,Khushit Shah' writeit-animate>Made with Love!</p>
                             <button class="btn btn-primary"
                                 onclick="WriteItJS.startAnimationOfNode('#ex5')">Re-Animate</button>
                         </div>
@@ -304,7 +307,7 @@
                     <div class="text text-monospace block">
                         <h2 class="text monospace"># writeit-loop-reverse </h2>
                         <hr>
-                        <p>Continously loops the same animation and also adds erasing animation.</p>
+                        <p>Same as writeit-loop but also adds deleting animation.</p>
                         <div class="codeblock">
                             <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-animate&gt;reverse loop loop loop&lt;/p&gt;</code></pre>
                             <p class="ex" id='ex14' writeit-loop-reverse writeit-animate>reverse loop loop loop</p>
@@ -325,7 +328,7 @@
                     <div class="text text-monospace block">
                         <h2 class="text monospace"># writeit-next & writeit-has-prev </h2>
                         <hr>
-                        <p> Animates other elements after the current element is animated, it takes the selector for next elements seperated bu ',' as value</p>
+                        <p> Animates other elements after the current element is animated, it takes the selector for next elements seperated by ',' as value</p>
                         <div class="codeblock">
                             <pre><code class="language-html">&lt;p writeit-next='#p1' writeit-animate&gt;It will start animation of another element&lt;/p&gt;
 &lt;p id='p1' writeit-animate&gt;This will ne messed up...&lt;/p&gt;</code></pre>
@@ -374,7 +377,7 @@
                     <div class="text text-monospace block">
                         <h2 class="text monospace"># writeit-no-blink </h2>
                         <hr>
-                        <p> Does not animate infinite blinking cursor at the end! </p>
+                        <p> Will not animate infinite blinking cursor at the end! </p>
                         <div class="codeblock">
                             <pre><code class="language-html">&lt;p writeit-no-blink writeit-animate&gt;No blinking cursor 😱️ &lt;/p&gt;</code></pre>
                             <p class="ex" id='ex20' writeit-no-blink writeit-animate>No blinking cursor 😱️</p>
@@ -387,33 +390,38 @@
                         <h2 class="text monospace"># $`` and ${} </h2>
                         <hr>
                         <p> All the text into $`` will not be animated and will be writtern in one throw.</p>
-                        <p> ${second} will will pause the animation of given element for specified time.</p>
+                        <p> ${second} will pause the animation of given element for specified time.</p>
                         <div class="codeblock">
-                            <pre><code class="language-html">&lt;p writeit-animate&gt;This is fast, wait${3},$`Finish`&lt;/p&gt;</code></pre>
+                            <pre><code class="language-html">&lt;p writeit-animate&gt;This is fast, wait${3} $`Finished!`&lt;/p&gt;</code></pre>
                             <p class="ex" id='ex21'writeit-animate>This is fast, wait ${3} $`Finished!`</p>
                             <button class="btn btn-primary"
                             onclick="WriteItJS.startAnimationOfNode('#ex21')">Re-Animate</button>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="text text-monospace block">
                         <h2 class="text monospace"># writeit-wait-in-reverse and writeit-write-all-in-reverse </h2>
                         <hr>
                         <p> if writeit-wait-in reverse is specified,  animation will also get affected by ${} in reverse mode.</p>
                         <p> if writeit-write-all-in-reverse is specified,  animation will also get affected by $`` in reverse mode.</p>
                         <p>wihtout attributes</p>
-                        <!-- <div class="codeblock">
-                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-animate&gt;This is fast, wait${3},$`Finish`&lt;/p&gt;</code></pre>
-                            <p class="ex" id='ex22' writeit-loop-reverse writeit-animate>This is fast, wait ${3} $`Finished!`!</p>
-                            <button class="btn btn-primary"
-                            onclick="WriteItJS.startAnimationOfNode('#ex22')">Re-Animate</button>
-                        </div> -->
                         <p>With attributes</p>
                         <div class="codeblock">
-                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-wait-in-reverse writeit-write-all-in-reverse writeit-animate&gt;This is fast, wait${3},$`Finish`&lt;/p&gt;</code></pre>
-                            <p class="ex" id='ex23' writeit-loop-reverse writeit-write-all-in-reverse writeit-wait-in-reverse writeit-animate>This is fast, wait ${3} $`Finished!`!</p>
+                            <pre><code class="language-html">&lt;p writeit-loop-reverse writeit-wait-in-reverse writeit-write-all-in-reverse writeit-animate&gt;This is fast, wait${3},$`Finished!`..&lt;/p&gt;</code></pre>
+                            <p class="ex" id='ex23' writeit-loop-reverse writeit-write-all-in-reverse writeit-wait-in-reverse writeit-animate>This is fast, wait ${3} $`Finished!`..</p>
                             <button class="btn btn-primary"
                             onclick="WriteItJS.startAnimationOfNode('#ex23')">Re-Animate</button>
                         </div>
+                    </div>
+
+                    <div class="text text-monospace block">
+                        <h2 class="text monospace"># writeit javascript API </h2>
+                        <hr>
+                        <p> Even though you don't need to write a single line of javascript but still there are some functions you can use.</p>
+                        <p> 1. <b>startAnimation()</b> - starts the parsing of web page and animation of all nodes.</p>
+                        <p> 2. <b>startAnimationOfNode(&lt;selector of node&gt;)</b> - starts the animation of node <b>from start.</b> </p>
+                        <p> 3. <b>pauseAnimation(&lt;selector of node&gt;)</b> - pauses animation of node. </p>
+                        <p> 4. <b>resumeAnimation(&lt;selector of node&gt;)</b> - resumes animation of node. </p>
+                        <p> E.g using startAnimationOfNode() when the node becomes visible to user</p>
                     </div>
                 </div>
 
@@ -425,11 +433,36 @@
         </div>
     </div>
     <!-- End: Article Clean -->
+
+    <div class="article-clean">
+        <div class="container-flex">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                    <!-- Start: Intro -->
+                    <div class="intro">
+                        <h1 class="text-monospace text-center">Examples</h1>
+                    </div>
+                    <div class="text block">
+                        <h2 class="text-monospace"><a href="http://"> # Terminal App </a></h2>
+                        <img width="100%" src="https://picsum.photos/500/300" alt="">
+                    </div>
+                    <hr>
+                    <div class="text text-monospace block">
+                        <h2 class="text-monospace"><a href="http://"> # Portfolio </a></h2>
+                        <img width="100%" src="https://picsum.photos/500/300" alt="">
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End: Article Clean -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
-    <script src="/assets/js/script.min.js?h=82d712d5e0811380f26d2753ca68c860"></script>
-    <script src="/assets/js/WriteIt.js"></script>
+    <script src="assets/js/script.min.js?h=82d712d5e0811380f26d2753ca68c860"></script>
+    <script src="assets/js/WriteIt.js"></script>
 
     <script>hljs.initHighlightingOnLoad();</script>
 </body>
