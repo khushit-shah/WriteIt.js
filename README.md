@@ -45,3 +45,9 @@ It is light-weight it can run over 100s of instances simultaneously.
 - Console Errors.
 - Expected Behaviour.
 - If you want new functionality, Add it to title.
+
+# TODO
+ - Add video, image, emoji use demonstration in terminal app
+ - Create portfolio example.
+ - Add functionality to repeat the animation for specific number of times
+   - writeit-loop='&lt;x&gt;' : to repeat the animation x number of times 
