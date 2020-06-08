@@ -46,13 +46,15 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 1;
+        z-index: -100;
     }
     #terminal {
         position: absolute;
         top: 0;
         left: 0;
-        /* z-index: 100; */
+        width: 100%;
+        height: 100%;   
+        z-index: 100;
     }
     </style>
 </head>
@@ -115,7 +117,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/easing/EasePack.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
-    <script src="js/WriteIt.js"></script>
+    <script src="js/WriteIt.min.js"></script>
     <script src="js/script.min.js"></script>
     <script>
         let scroll = () =>  { window.scroll(0, 10000); }
