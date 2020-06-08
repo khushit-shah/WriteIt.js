@@ -1,6 +1,6 @@
 /**
  * @license MIT
- * @author KhushitShah
+ * @author Khushit Shah
  */
 class WriteIt {
   /**
@@ -117,6 +117,7 @@ class WriteIt {
   seo() {
     this.nodes.forEach(element => {
       const newELement = element.cloneNode(true);
+      newELement.id = "seo_" + element.id;
       newELement.style.display = "none";
       element.parentNode.appendChild(newELement);
     });
@@ -134,6 +135,7 @@ class WriteItNode {
      * @type RegExp
      * Looks for a comma after any character.
      */
+    this.running = false;
     this.commaSepReg = /,(?!\\)/;
     if (node == undefined || node == null) {
       throw new Error("Node must be a valid HTML tag");
@@ -159,7 +161,7 @@ class WriteItNode {
 
   init() {
     if (this.node.hasAttribute(WriteItJS.WRITEIT_HIDDEN)) {
-      this.node.style.pdisp = this.node.style.display;
+      this.pdisp = this.node.style.display;
       this.node.style.display = "none";
     }
     if (this.node.hasAttribute(WriteItJS.WRITEIT_CHAR)) {
@@ -170,6 +172,8 @@ class WriteItNode {
     if (this.node.hasAttribute(WriteItJS.WRITEIT_REPLACE_NEXT)) {
       this.originalTexts = this.node
         .getAttribute(WriteItJS.WRITEIT_REPLACE_NEXT)
+        // remove redudant spaces.
+        .replace(/[\s]+/g, " ")
         .split("")
         .reverse()
         .join("")
@@ -182,10 +186,12 @@ class WriteItNode {
             .replace("\\,", ",")
         )
         .reverse();
-      this.text = this.node.innerHTML;
+      // remove redudant spaces
+      this.text = this.node.innerHTML.replace(/[\s]+/g, " ");
       this.textsIndex = -1;
     } else {
-      this.text = this.node.innerHTML;
+      // remove redudant spaces
+      this.text = this.node.innerHTML.replace(/[\s]+/g, " ");
     }
     this.text = this.text.trim();
 
@@ -197,24 +203,30 @@ class WriteItNode {
       let writeTempIndex = this.text.indexOf('$`', temp);
       if (waitTempIndex > -1 && (waitTempIndex < writeTempIndex || writeTempIndex == -1)) {
         // set wait.
+        // TODO: Check that matching closing bracket is present!
         i = waitTempIndex;
         let secToWait = this.text.substring(i + 2, this.text.indexOf('}', i));
         this.waitIndex["default"][i] = secToWait;
+        //                                                   this might return -1
         this.text = this.text.replace(this.text.substring(i, this.text.indexOf("}", i) + 1), "");
         temp += 2;
       } else if (writeTempIndex > -1 && (writeTempIndex < waitTempIndex || waitTempIndex == -1)) {
         // set write.
         i = writeTempIndex;
+        
+        // Check that matching quote(`) is present!
         let endIndex = this.text.indexOf("`", i + 2);
-        this.writeAllTextAtOnceIndex["default"][i + 1] = endIndex - 1;
-        if (this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE)) {
-          this.writeAllTextAtOnceIndex["default"][endIndex] = i + 1;
+        if (endIndex != -1) {
+          let length = endIndex - i - 2;
+          this.writeAllTextAtOnceIndex["default"][i] = endIndex - 1;
+          if (this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE)) {
+            this.writeAllTextAtOnceIndex["default"][i + length] = i;
+          }
+          this.text = this.text.replace(this.text.substring(i, endIndex + 1), this.text.substring(i + 2, endIndex));
+          temp += endIndex + 1;
         }
-        this.text = this.text.replace(this.text.substring(i, endIndex + 1), this.text.substring(i + 2, endIndex));
-        temp += endIndex + 1;
       }
     }
-
     if (this.node.hasAttribute(WriteItJS.WRITEIT_REPLACE_NEXT)) {
       // Loop for all texts in WRITEIT_REPLACE_NEXT and also parse them.
       for (let iterator = 0; iterator < this.originalTexts.length; iterator++) {
@@ -298,17 +310,18 @@ class WriteItNode {
     }
     // check if the node is hidden?
     if (this.node.hasAttribute(WriteItJS.WRITEIT_HIDDEN)) {
-      this.node.style.display = this.node.style.pdisp;
+      this.node.style.display = this.pdisp;
     }
 
     if (this.node.hasAttribute(WriteItJS.WRITEIT_NEXT)) {
       let nodes = this.node.getAttribute(WriteItJS.WRITEIT_NEXT).split(",");
       nodes.forEach(node => {
         let curNode = WriteItJS.findNode(node);
-        if (curNode) {curNode.stopAnimation(); curNode.init(); }
+        if (curNode && curNode.running) { curNode.stopAnimation(); curNode.init(); }
       });
     }
     this.timeout = this.setTimeout(this.animate, delay);
+    this.running = true;
   }
 
   stopAnimation() {
@@ -316,6 +329,7 @@ class WriteItNode {
     clearInterval(this.interval);
     this.timeout = -1; // Stop executing animation() now;
     this.node.innerHTML = this.innerHTML;
+    this.running = false;
   }
 
   /**
@@ -344,21 +358,36 @@ class WriteItNode {
     if (this.waitIndex[this.textsIndex == -1 ? "default" : this.textsIndex][this.index] != undefined && this.wait == false && (!this.reverse || this.node.hasAttribute(WriteItJS.WRITEIT_WAIT_IN_REVERSE))) {
       let waitingTime = this.waitIndex[this.textsIndex == -1 ? "default" : this.textsIndex][this.index];
       this.wait = true;
-      this.node.innerHTML = this.text.substring(0, this.index + 1) + this.writeitChar;
-      this.index++;
+      this.node.innerHTML = this.text.substring(0, this.index + (this.reverse ? -1 : 1)) + this.writeitChar;
+      this.index += this.reverse ? -1 : 1;
+      if (this.index <= 0 || this.index >= this.text.length) {
+        this.handleIterationEnd();
+        return;
+      } else {
+        // this.node.innerHTML += this.writeitChar;
+      }
       this.timeout = this.setTimeout(() => { this.wait = false; this.animate(); }, waitingTime * 1000);
       return;
     } else if (this.wait == true) {
       return;
     }
-    if (this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && ((!this.reverse && this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] > this.index) || (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE) && this.writeAllTextAtOnceIndex[this.index] < this.index))) {
-      this.node.innerHTML = this.text.substring(0, this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] - 1);
-      this.index = this.node.innerHTML.length + 1;
-      this.node.innerHTML += this.writeitChar;
-      this.wait = true;
-      this.timeout = this.setTimeout(() => { this.wait = false; this.animate(); }, this.speed);
-      return;
+    if (this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined) {
+      let destinationIndex = this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index];
+      if (this.reverse && destinationIndex < this.index) {
+        this.node.innerHTML = this.text.substring(0, destinationIndex);
+        this.index = this.node.innerHTML.length - 1;
+      } else if (!this.reverse && destinationIndex > this.index) {
+        this.node.innerHTML = this.text.substring(0, destinationIndex);
+        this.index = this.node.innerHTML.length;
+      }
+      if (this.index <= 0 || this.index >= this.text.length) {
+        this.handleIterationEnd();
+        return;
+      } else {
+        this.node.innerHTML += this.writeitChar;
+      }
     }
+
     // Browser may have added ending tag so ignore it.
     let str = this.node.innerHTML.substring(0, this.index);
 
@@ -522,7 +551,7 @@ class WriteItNode {
       if (this.node.innerHTML.replace(/'/g, "\"") != (this.text + this.writeitChar).replace(/'/g, "\"")) {
         this.node.innerHTML = this.text + this.writeitChar;
       } else {
-        this.node.innerHTML = this.text;
+        this.node.innerHTML = this.text + ("\u00A0".repeat(this.writeitChar.length));
       }
     }, 500);
   }
