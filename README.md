@@ -5,6 +5,8 @@ It is completely attribute based system. tweak few attribute and get completly n
 
 It is light-weight it can run over 100s of instances simultaneously.
 
+Documentation on: https://khushitshah.me/WriteIt.js/
+
 # Installation
 - Download .zip file and extract writeit.js to your javascript folder and add
 
