@@ -35,10 +35,9 @@ It is light-weight it can run over 100s of instances simultaneously.
 
 # TODO
 - [x] functionality to start animation from javascript(i.e. start animation when user scroll etc.).
-- [ ] Documentation.
+- [x] Documentation.
 - [x] Minification(Closure Advance).
-- [ ] NPM and YARN installation.
-- [ ] CDN Creation.
+- [x] CDN Creation.
 
 # Issue Template
 - Short Description.
