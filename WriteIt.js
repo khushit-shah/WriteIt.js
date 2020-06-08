@@ -206,10 +206,10 @@ class WriteItNode {
         // TODO: Check that matching closing bracket is present!
         i = waitTempIndex;
         let secToWait = this.text.substring(i + 2, this.text.indexOf('}', i));
-        this.waitIndex["default"][i] = secToWait;
+        this.waitIndex["default"][i] = Number(secToWait);
         //                                                   this might return -1
         this.text = this.text.replace(this.text.substring(i, this.text.indexOf("}", i) + 1), "");
-        temp += 2;
+        temp += 1;
       } else if (writeTempIndex > -1 && (writeTempIndex < waitTempIndex || waitTempIndex == -1)) {
         // set write.
         i = writeTempIndex;
@@ -223,10 +223,13 @@ class WriteItNode {
             this.writeAllTextAtOnceIndex["default"][i + length] = i;
           }
           this.text = this.text.replace(this.text.substring(i, endIndex + 1), this.text.substring(i + 2, endIndex));
-          temp += endIndex + 1;
+          temp += endIndex;
         }
       }
     }
+    console.log(this.text);
+    console.log(this.waitIndex);
+    console.log(this.writeAllTextAtOnceIndex);
     if (this.node.hasAttribute(WriteItJS.WRITEIT_REPLACE_NEXT)) {
       // Loop for all texts in WRITEIT_REPLACE_NEXT and also parse them.
       for (let iterator = 0; iterator < this.originalTexts.length; iterator++) {
@@ -352,33 +355,44 @@ class WriteItNode {
    * Adds/Removes a letter from "html";
    */
   animate() {
+    // return if animation is paused or stopped.
     if (this.timeout == -1) {
       return;
     }
-    if (this.waitIndex[this.textsIndex == -1 ? "default" : this.textsIndex][this.index] != undefined && this.wait == false && (!this.reverse || this.node.hasAttribute(WriteItJS.WRITEIT_WAIT_IN_REVERSE))) {
-      let waitingTime = this.waitIndex[this.textsIndex == -1 ? "default" : this.textsIndex][this.index];
-      this.wait = true;
-      this.node.innerHTML = this.text.substring(0, this.index + (this.reverse ? -1 : 1)) + this.writeitChar;
-      this.index += this.reverse ? -1 : 1;
+    // Wait if we need to wait at these position.
+    if (this.waitIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && !this.wait) {
+      let secsToWait = this.waitIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index];
+      this.node.innerHTML = this.text.substring(0, this.index); // + this.writeitChar;
+      if (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE)) {
+        secsToWait = secsToWait * 1000;
+        this.index --;
+      } else if (!this.reverse) {
+        secsToWait = secsToWait * 1000;
+        this.index ++;
+      } else {
+        secsToWait = 0;
+      }
       if (this.index <= 0 || this.index >= this.text.length) {
         this.handleIterationEnd();
         return;
       } else {
         // this.node.innerHTML += this.writeitChar;
       }
-      this.timeout = this.setTimeout(() => { this.wait = false; this.animate(); }, waitingTime * 1000);
-      return;
-    } else if (this.wait == true) {
+      this.timeout = this.setTimeout(() => { this.wait = false; this.animate(); }, secsToWait);   
       return;
     }
+    // return if already waiting!
+    if(this.wait) return;
+
+    // Write all text at once.
     if (this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined) {
       let destinationIndex = this.writeAllTextAtOnceIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index];
       if (this.reverse && destinationIndex < this.index) {
         this.node.innerHTML = this.text.substring(0, destinationIndex);
-        this.index = this.node.innerHTML.length - 1;
+        this.index = destinationIndex - 1;
       } else if (!this.reverse && destinationIndex > this.index) {
         this.node.innerHTML = this.text.substring(0, destinationIndex);
-        this.index = this.node.innerHTML.length;
+        this.index = destinationIndex + 1;
       }
       if (this.index <= 0 || this.index >= this.text.length) {
         this.handleIterationEnd();
@@ -386,10 +400,13 @@ class WriteItNode {
       } else {
         this.node.innerHTML += this.writeitChar;
       }
+      this.nextIteration();
+      return;
     }
 
+
     // Browser may have added ending tag so ignore it.
-    let str = this.node.innerHTML.substring(0, this.index);
+    let str = this.text.substring(0, this.index);
 
     // Add HTML without writeit.
     this.node.innerHTML = str;
