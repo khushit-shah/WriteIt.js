@@ -227,9 +227,6 @@ class WriteItNode {
         }
       }
     }
-    console.log(this.text);
-    console.log(this.waitIndex);
-    console.log(this.writeAllTextAtOnceIndex);
     if (this.node.hasAttribute(WriteItJS.WRITEIT_REPLACE_NEXT)) {
       // Loop for all texts in WRITEIT_REPLACE_NEXT and also parse them.
       for (let iterator = 0; iterator < this.originalTexts.length; iterator++) {
