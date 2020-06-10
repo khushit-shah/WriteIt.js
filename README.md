@@ -49,7 +49,6 @@ Documentation on: https://khushit-shah.github.io/WriteIt.js
 - If you want new functionality, Add it to title.
 
 # TODO
- - Add video, image, emoji use demonstration in terminal app
  - Create portfolio example.
  - Add functionality to repeat the animation for specific number of times
    - writeit-loop='&lt;x&gt;' : to repeat the animation x number of times 
