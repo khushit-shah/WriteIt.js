@@ -15,47 +15,51 @@
     <link rel="stylesheet"
         href="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/styles/default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
     <style>
         body {
-            overflow-x: hidden!important;
+            overflow-x: hidden !important;
             background: black;
             color: white;
         }
-        * {
-            margin: 0px!important;
-            padding: 0px!important;
-            font-family: 'Source Code Pro', monospace!important; /*, monospace;*/
-            font-size: large!important;
-        }
-        .connecting-dots {
-        /* position: fixed; */
-        /* top: 0; */
-        /* left: 0; */
-        /* width: 100%; */
-        /* height: 100%; */
-        background-size: cover;
-        background-position: center center;
-        position: relative;
-        margin: 0 auto;
-    }
 
-    canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -100;
-    }
-    #terminal {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;   
-        z-index: 100;
-    }
+        * {
+            margin: 0px !important;
+            padding: 0px !important;
+            font-family: 'Source Code Pro', monospace !important;
+            /*, monospace;*/
+            font-size: large !important;
+        }
+
+        .connecting-dots {
+            /* position: fixed; */
+            /* top: 0; */
+            /* left: 0; */
+            /* width: 100%; */
+            /* height: 100%; */
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -100;
+        }
+
+        #terminal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
     </style>
 </head>
 
@@ -64,8 +68,10 @@
         <canvas id="canvas"></canvas>
     </div>
     <div id="terminal">
-        <!-- <p writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-next="#p1">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>~</span>` ls</p>
-        <div writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-has-prev writeit-hidden id="p1" writeit-next="#p2">$`
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-next="#p1">$`<span
+                style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>~</span>` ls</p>
+        <div writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-has-prev writeit-hidden id="p1"
+            writeit-next="#p2">$`
             <p>WriteIt.js</p>
             <p>Blind's Partner</p>
             <p>Meteor Breaker</p>
@@ -76,42 +82,163 @@
             <p>ChessBuddy V2.0</p>
             <p>PI-Calcultor</p>`
         </div>
-        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev writeit-hidden id="p2" writeit-next="#p3">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>~</span>` whereis WriteIt.js</p>
-        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev writeit-hidden id="p3" writeit-next="#p4">$`<a href="https://github.com/khushit-shah/WriteIt.js/">https://github.com/khushit-shah/WriteIt.js/</a>`</p>
-        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-has-prev writeit-hidden id="p4" writeit-next="#p5">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>~</span>` cd Chess$`Buddy`</p>
-        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-has-prev writeit-hidden id="p5" writeit-next="#p6">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>ChessBuddy</span>` cat game.pgn</p>
-        <div writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-has-prev writeit-hidden id="p6" writeit-next="#p7">$`
-            1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6 7.d3 Nh5 8.Nh4 Qg5 9.Nf5 c6 10.g4 Nf6 11.Rg1 cxb5 12.h4 Qg6 13.h5 Qg5 14.Qf3 Ng8 15.Bxf4 Qf6 16.Nc3 Bc5 17.Nd5 Qxb2 18.Bd6 Bxg1 19.e5 Qxa1+ 20.Ke2 Na6 21.Nxg7+ Kd8 22.Qf6+ Nxf6 23.Be7+ 1-0`
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p2" writeit-next="#p3">$`<span style="color: green;">hacker@mypotatopc</span>:<span
+                style='color: blue'>~</span>` whereis WriteIt.js</p>
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p3" writeit-next="#p4">$`<a
+                href="https://github.com/khushit-shah/WriteIt.js/">https://github.com/khushit-shah/WriteIt.js/</a>`</p>
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p4" writeit-next="#p5">$`<span style="color: green;">hacker@mypotatopc</span>:<span
+                style='color: blue'>~</span>` cd Chess$`Buddy`</p>
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p5" writeit-next="#p6">$`<span style="color: green;">hacker@mypotatopc</span>:<span
+                style='color: blue'>ChessBuddy</span>` cat game.pgn</p>
+        <div writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-has-prev writeit-hidden id="p6"
+            writeit-next="#p7">$`
+            1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 b5 5.Bxb5 Nf6 6.Nf3 Qh6 7.d3 Nh5 8.Nh4 Qg5 9.Nf5 c6 10.g4 Nf6 11.Rg1 cxb5
+            12.h4 Qg6 13.h5 Qg5 14.Qf3 Ng8 15.Bxf4 Qf6 16.Nc3 Bc5 17.Nd5 Qxb2 18.Bd6 Bxg1 19.e5 Qxa1+ 20.Ke2 Na6
+            21.Nxg7+ Kd8 22.Qf6+ Nxf6 23.Be7+ 1-0`
         </div>
-        <span writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-has-prev writeit-hidden id="p7" writeit-next="#p8">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>ChessBuddy</span>` cd </span>
-        <span writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-has-prev writeit-hidden id="p8" writeit-next="#p9" writeit-replace-next="../Writ$`eIt.js`">WriteIt.js</span>
-        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-has-prev writeit-hidden id="p9" writeit-next="#p10">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>WriteIt.js</span>` ls</p>        
-        <div writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-has-prev writeit-hidden id="p10" writeit-next="#p11">$`
+        <span writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p7" writeit-next="#p8">$`<span style="color: green;">hacker@mypotatopc</span>:<span
+                style='color: blue'>ChessBuddy</span>` cd </span>
+        <span writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p8" writeit-next="#p9" writeit-replace-next="../Writ$`eIt.js`">WriteIt.js</span>
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p9" writeit-next="#p10">$`<span style="color: green;">hacker@mypotatopc</span>:<span
+                style='color: blue'>WriteIt.js</span>` ls</p>
+        <div writeit-char="<span style='color: green'>▉</span>" writeit-animate writeit-has-prev writeit-hidden id="p10"
+            writeit-next="#p11">$`
             <p>docs</p>
             <p>WriteIt.js</p>
             <p>WriteIt.min.js</p>
             <p>search.sh</p>`
         </div>
-        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-has-prev writeit-hidden id="p11" writeit-next="#p12">$`<span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>WriteIt.js</span>` sudo ./search.sh</p> -->
-        <div writeit-char="<span style='color: green'>▉</span>" writeit-speed="10"writeit-animate writeit-hidden id="p12" writeit-no-blink>
+        <p writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-has-prev
+            writeit-hidden id="p11" writeit-next="#p12">$`<span style="color: green;">hacker@mypotatopc</span>:<span
+                style='color: blue'>WriteIt.js</span>` sudo ./search.sh</p>
+        <div writeit-char="<span style='color: green'>▉</span>" writeit-speed="10" writeit-animate writeit-hidden
+            id="p12" writeit-has-prev writeit-no-blink writeit-next="#p13">
             <span>$`Crunching the internet to find the best text writing javascript library` .${1}.${1}.${1}.</span><br>
             <p><span style="color: green;">WriteIt.js</span> is the best text writing javascript library!</p>
             <div>$`
- /***<br>
- *    :__:::::::__::::::::::::__::::__::::::::::::::::______::::__:::::::::::::::::::::::::::::<br>
- *    /::|::_::/::|::::::::::/::|::/::|::::::::::::::/::::::|::/::|::::::::::::::::::::::::::::<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span>:|:/:\:<span style="color: green;">$</span><span style="color: green;">$</span>:|::______::<span style="color: green;">$</span><span style="color: green;">$</span>/::_<span style="color: green;">$</span><span style="color: green;">$</span>:|_:::::______::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::_<span style="color: green;">$</span><span style="color: green;">$</span>:|_::::::::::::::__:::_______:<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span>:|/<span style="color: green;">$</span>::\<span style="color: green;">$</span><span style="color: green;">$</span>:|:/::::::\:/::|/:<span style="color: green;">$</span><span style="color: green;">$</span>:::|:::/::::::\:::<span style="color: green;">$</span><span style="color: green;">$</span>:|::/:<span style="color: green;">$</span><span style="color: green;">$</span>:::|::::::::::::/::|:/:::::::|<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span>:/<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>::<span style="color: green;">$</span><span style="color: green;">$</span>:|/<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>::|<span style="color: green;">$</span><span style="color: green;">$</span>:|<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/:::/<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>::|::<span style="color: green;">$</span><span style="color: green;">$</span>:|::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/:::::::::::::<span style="color: green;">$</span><span style="color: green;">$</span>/:/<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/:<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span>:<span style="color: green;">$</span><span style="color: green;">$</span>/<span style="color: green;">$</span><span style="color: green;">$</span>:<span style="color: green;">$</span><span style="color: green;">$</span>:|<span style="color: green;">$</span><span style="color: green;">$</span>:|::<span style="color: green;">$</span><span style="color: green;">$</span>/:<span style="color: green;">$</span><span style="color: green;">$</span>:|::<span style="color: green;">$</span><span style="color: green;">$</span>:|:__:<span style="color: green;">$</span><span style="color: green;">$</span>::::<span style="color: green;">$</span><span style="color: green;">$</span>:|::<span style="color: green;">$</span><span style="color: green;">$</span>:|::::<span style="color: green;">$</span><span style="color: green;">$</span>:|:__:::::::::::/::|<span style="color: green;">$</span><span style="color: green;">$</span>::::::\:<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>:|<span style="color: green;">$</span><span style="color: green;">$</span>:|::::::<span style="color: green;">$</span><span style="color: green;">$</span>:|::<span style="color: green;">$</span><span style="color: green;">$</span>:|/::|<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::_<span style="color: green;">$</span><span style="color: green;">$</span>:|_:::<span style="color: green;">$</span><span style="color: green;">$</span>:|/::|:__:::::::<span style="color: green;">$</span><span style="color: green;">$</span>:|:<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>::|<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>:|<span style="color: green;">$</span><span style="color: green;">$</span>:|::::::<span style="color: green;">$</span><span style="color: green;">$</span>:|::<span style="color: green;">$</span><span style="color: green;">$</span>::<span style="color: green;">$</span><span style="color: green;">$</span>/:<span style="color: green;">$</span><span style="color: green;">$</span>:::::::|/:<span style="color: green;">$</span><span style="color: green;">$</span>:::|::<span style="color: green;">$</span><span style="color: green;">$</span>::<span style="color: green;">$</span><span style="color: green;">$</span>/:/::|::::::<span style="color: green;">$</span><span style="color: green;">$</span>:|/:::::<span style="color: green;">$</span><span style="color: green;">$</span>/:<br>
- *    <span style="color: green;">$</span><span style="color: green;">$</span>/::::::<span style="color: green;">$</span><span style="color: green;">$</span>/:<span style="color: green;">$</span><span style="color: green;">$</span>/:::::::<span style="color: green;">$</span><span style="color: green;">$</span>/::::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/:::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/:<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::<span style="color: green;">$</span><span style="color: green;">$</span>/::__:::<span style="color: green;">$</span><span style="color: green;">$</span>:|<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::<br>
- *    :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/::\__<span style="color: green;">$</span><span style="color: green;">$</span>:|::::::::::<br>
- *    :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<span style="color: green;">$</span><span style="color: green;">$</span>::::<span style="color: green;">$</span><span style="color: green;">$</span>/:::::::::::<br>
- *    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span><span style="color: green;">$</span>/::::::::::::<br>
- */<br>`
-            </div>
+                /***<br>
+                * :__:::::::__::::::::::::__::::__::::::::::::::::______::::__:::::::::::::::::::::::::::::<br>
+                * /::|::_::/::|::::::::::/::|::/::|::::::::::::::/::::::|::/::|::::::::::::::::::::::::::::<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span>:|:/:\:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::______::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::_<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|_:::::______::<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::_<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|_::::::::::::::__:::_______:<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span>:|/<span
+                    style="color: green;">$</span>::\<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:|:/::::::\:/::|/:<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:::|:::/::::::\:::<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:|::/:<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:::|::::::::::::/::|:/:::::::|<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span>:/<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>::<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:|/<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>::|<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:|<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>/:::/<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>::|::<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:|::<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>/:::::::::::::<span style="color: green;">$</span><span
+                    style="color: green;">$</span>/:/<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span>:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|:__:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|:__:::::::::::/::|<span
+                    style="color: green;">$</span><span style="color: green;">$</span>::::::\:<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|/::|<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::_<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|_:::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|/::|:__:::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|:<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>::|<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>/::::<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:::::::|/:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:::|::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:/::|::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|/:::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:<br>
+                * <span style="color: green;">$</span><span style="color: green;">$</span>/::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:::<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>/:<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>/::::<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span>/::<span style="color: green;">$</span><span
+                    style="color: green;">$</span>/::__:::<span style="color: green;">$</span><span
+                    style="color: green;">$</span>:|<span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::<br>
+                * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/::\__<span
+                    style="color: green;">$</span><span style="color: green;">$</span>:|::::::::::<br>
+                * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span>/:::::::::::<br>
+                * ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::<span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span><span
+                    style="color: green;">$</span><span style="color: green;">$</span>/::::::::::::<br>*/<br>`</div></div>
+            <p writeit-char="<span style='color: red'>❤️</span>"  writeit-hidden writeit-speed="10" writeit-animate writeit-has-prev
+                 id="p13" writeit-next="#p14">$`
+                <span style="color: green;">hacker@mypotatopc</span>:<span style='color: blue'>WriteIt.js</span>` Made with <span stlye="color: red;">❤️</span></p>
+            <p writeit-char="<img src='me.png' width='16px'>"  writeit-hidden writeit-speed="10" writeit-animate writeit-has-prev 
+                id="p14">$`<span style="color: green;">&gt;</span>` By Khushit Shah</p>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -120,7 +247,7 @@
     <script src="js/WriteIt.min.js"></script>
     <script src="js/script.min.js"></script>
     <script>
-        let scroll = () =>  { window.scroll(0, 10000); }
+        let scroll = () => { window.scroll(0, 10000); }
         setInterval(scroll, 30);
     </script>
 </body>
