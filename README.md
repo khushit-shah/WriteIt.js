@@ -1,9 +1,9 @@
 # WriteIt.js
-**_WriteIt.js is lightweight javascript library for text-writing/type-writing effect_**.
+**_WriteIt.js is javascript library for text writing effect_**.
 
 It is completely attribute based system. tweak few attribute and get completly new animation, **you don't need to write single line of javscript :-)**.
 
-It is light-weight it can run over 100s of instances simultaneously.
+It can run over 100s of instances simultaneously.
 
 Documentation on: https://khushit-shah.github.io/WriteIt.js
 
@@ -13,8 +13,9 @@ Documentation on: https://khushit-shah.github.io/WriteIt.js
 ```html
         <body writeit-auto-start>
                 <p writeit-animate>CursorJS is <b>best</b> text writing effect <i>javascript library</i></p>
-
-                <script src="/path/to/writeit.min.js"></script>
+                <script src="/path/to/WriteIt.min.js"></script>
+                <!--- or -->
+                <script src="https://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js@version/WriteIt.min.js"></script>
         </body>
 ```
 # Functionalities
@@ -35,12 +36,6 @@ Documentation on: https://khushit-shah.github.io/WriteIt.js
 - writeit-wait-in-reverse
 - writeit-write-all-in-reverse
 
-# TODO
-- [x] functionality to start animation from javascript(i.e. start animation when user scroll etc.).
-- [x] Documentation.
-- [x] Minification(Closure Advance).
-- [x] CDN Creation.
-
 # Issue Template
 - Short Description.
 - Browser Information.
@@ -49,6 +44,5 @@ Documentation on: https://khushit-shah.github.io/WriteIt.js
 - If you want new functionality, Add it to title.
 
 # TODO
- - Create portfolio example.
  - Add functionality to repeat the animation for specific number of times
    - writeit-loop='&lt;x&gt;' : to repeat the animation x number of times 
