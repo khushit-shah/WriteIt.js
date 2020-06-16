@@ -585,12 +585,14 @@ class WriteItNode {
   }
 }
 const WriteItJS = new WriteIt();
+
 // Automatically start Animation if writeit-auto-start attribute is present,
 // this is not related with the animation of node
 // but, it starts parsing each node which has "writeit-animate"
 if (document.querySelector("*[" + WriteItJS.WRITEIT_AUTO_START + "]")) {
   WriteItJS.startAnimation();
 }
+
 // add other WriteItJS function as an array object so they don't get ignored by Closure ADVANCE settings.
 window["WriteItJS"] = WriteItJS;
 window["WriteItJS"]["startAnimation"] = WriteItJS.startAnimation;
@@ -598,4 +600,4 @@ window["WriteItJS"]["pauseAnimation"] = WriteItJS.pauseAnimation;
 window["WriteItJS"]["resumeAnimation"] = WriteItJS.resumeAnimation;
 window["WriteItJS"]["startAnimationOfNode"] = WriteItJS.startAnimationOfNode;
 // other functions are not necessary for users[programmers].
-console.log("WriteIt.js v2.0 loaded!👍, visit https://github.com/khushit-shah/WriteIt.js"); 
+console.log("WriteIt.js v2.0 loaded!, visit https://github.com/khushit-shah/WriteIt.js"); 
