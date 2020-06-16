@@ -131,11 +131,12 @@ class WriteItNode {
    * @param {boolean} _fromAnotherNode
    */
   constructor(node, _fromAnotherNode, _id) {
+    this.running = false;
+    
     /**
      * @type RegExp
      * Looks for a comma after any character.
      */
-    this.running = false;
     this.commaSepReg = /,(?!\\)/;
     if (node == undefined || node == null) {
       throw new Error("Node must be a valid HTML tag");
