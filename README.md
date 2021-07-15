@@ -6,6 +6,7 @@ It is completely attribute based system. tweak few attribute and get completly n
 It can run over 100s of instances simultaneously.
 
 Documentation on: https://khushit-shah.github.io/WriteIt.js
+
 Example On: https://khushit-shah.github.io/WriteIt.js/terminal-app/index.html
 # Installation
 - Download .zip file and extract writeit.js to your javascript folder and add
