@@ -16,7 +16,7 @@ Example On: https://khushit-shah.github.io/WriteIt.js/terminal-app/index.html
                 <p writeit-animate>CursorJS is <b>best</b> text writing effect <i>javascript library</i></p>
                 <script src="/path/to/WriteIt.min.js"></script>
                 <!--- or -->
-                <script src="https://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js@version/WriteIt.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/gh/khushit-shah/WriteIt.js@latest/WriteIt.min.js"></script>
         </body>
 ```
 # Functionalities
