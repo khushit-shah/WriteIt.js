@@ -320,7 +320,7 @@ class WriteItNode {
     if (this.node.hasAttribute(WriteItJS.WRITEIT_NEXT)) {
       let nodes = this.node.getAttribute(WriteItJS.WRITEIT_NEXT).split(",");
       nodes.forEach(node => {
-        let curNode = WriteItJS.startAnimationOfNode(node);
+        let curNode = WriteItJS.findNode(node);
         if (curNode && curNode.running) { curNode.stopAnimation(); curNode.init(); }
       });
     }
@@ -540,7 +540,7 @@ class WriteItNode {
       // Go through all of them and start them.
       let nodes = this.node.getAttribute(WriteItJS.WRITEIT_NEXT).split(",");
       nodes.forEach(node => {
-        let curNode = WriteItJS.findNode(node);
+        let curNode = WriteItJS.startAnimationOfNode(node);
         curNode.fromAnotherNode = true;
         curNode.startAnimation();
       });
