@@ -92,11 +92,13 @@ class WriteIt {
    */
   startAnimationOfNode(node) {
     let writeitNode = this.findNode(node);
+    
     if (writeitNode) {
       writeitNode.stopAnimation();
       writeitNode.init();
     }
     else {
+      node = document.querySelector(node);
       writeitNode = new WriteItNode(node, false, this.count++);
       this.writeitNodes.push(writeitNode);
     }
