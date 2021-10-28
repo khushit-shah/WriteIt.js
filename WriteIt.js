@@ -41,6 +41,7 @@ class WriteIt {
    * Starts animating whole page.
    */
   startAnimation() {
+    this.init();
     this.nodes.forEach(element => {
       let c = new WriteItNode(element, false, this.count++);
       this.writeitNodes.push(c);
