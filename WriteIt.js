@@ -2,7 +2,7 @@
  * @license MIT
  * @author Khushit Shah
  */
-class WriteIt {
+ class WriteIt {
   /**
    * Creates new WriteItJS class handles starting of animation of nodes and SEO.
    */
@@ -41,7 +41,6 @@ class WriteIt {
    * Starts animating whole page.
    */
   startAnimation() {
-    this.init();
     this.nodes.forEach(element => {
       let c = new WriteItNode(element, false, this.count++);
       this.writeitNodes.push(c);
@@ -90,18 +89,18 @@ class WriteIt {
    * If the node is already animating stops it and starts new animation.
    * @param node String representing ID of HTML element to Animate.
    */
-  startAnimationOfNode(node) {
+  startAnimationOfNode(node, fromAnotherNode) {
     let writeitNode = this.findNode(node);
-    
     if (writeitNode) {
       writeitNode.stopAnimation();
       writeitNode.init();
     }
     else {
-      node = document.querySelector(node);
       writeitNode = new WriteItNode(node, false, this.count++);
       this.writeitNodes.push(writeitNode);
     }
+    if(fromAnotherNode)
+      writeitNode.fromAnotherNode = true;
     writeitNode.startAnimation();
   }
 
@@ -134,12 +133,11 @@ class WriteItNode {
    * @param {boolean} _fromAnotherNode
    */
   constructor(node, _fromAnotherNode, _id) {
-    this.running = false;
-    
     /**
      * @type RegExp
      * Looks for a comma after any character.
      */
+    this.running = false;
     this.commaSepReg = /,(?!\\)/;
     if (node == undefined || node == null) {
       throw new Error("Node must be a valid HTML tag");
@@ -235,7 +233,7 @@ class WriteItNode {
       // Loop for all texts in WRITEIT_REPLACE_NEXT and also parse them.
       for (let iterator = 0; iterator < this.originalTexts.length; iterator++) {
         let tempText = this.originalTexts[iterator];
-
+        
         this.waitIndex[iterator] = [];
         this.writeAllTextAtOnceIndex[iterator] = [];
 
@@ -249,7 +247,7 @@ class WriteItNode {
             i = waitTempIndex;
             let secToWait = tempText.substring(i + 2, tempText.indexOf('}', i));
             this.waitIndex[iterator][i] = secToWait;
-            tempText = tempText.replace(tempText.substring(i, tempText.indexOf("}", i) + 1), "");
+            tempText = tempText.replace(tempText.substring(i, tempText.indexOf("}", i) + 1), " ");
             temp += 2;
           } else if (writeTempIndex > -1 && (writeTempIndex < waitTempIndex || waitTempIndex == -1)) {
             // set write.
@@ -264,7 +262,7 @@ class WriteItNode {
           }
         }
 
-        this.texts[iterator] = tempText;
+        this.texts[iterator] = tempText + " "; // add space as wait time can be at last.
       }
     }
 
@@ -279,7 +277,7 @@ class WriteItNode {
    * Sets a speed for the animation.
    * If writeit-speed-* is present than it uses that,
    * otherwise uses default speed of "6.5±1" letters/second.
-   */
+   */ 
   setSpeed() {
     this.speed = 1000 / (Math.random() * (7.5 - 5.5) + 5.5); // Time in millis to write one letter.
     if (this.node.hasAttribute(WriteItJS.WRITEIT_SPEED_FIXED)) {
@@ -364,7 +362,7 @@ class WriteItNode {
     if (this.waitIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && !this.wait) {
       let secsToWait = this.waitIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index];
       this.node.innerHTML = this.text.substring(0, this.index); // + this.writeitChar;
-      if (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WRITE_ALL_IN_REVERSE)) {
+      if (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WAIT_IN_REVERSE)) {
         secsToWait = secsToWait * 1000;
         this.index --;
       } else if (!this.reverse) {
@@ -372,6 +370,7 @@ class WriteItNode {
         this.index ++;
       } else {
         secsToWait = 0;
+        this.index --;
       }
       if (this.index <= 0 || this.index >= this.text.length) {
         this.handleIterationEnd();
@@ -540,9 +539,7 @@ class WriteItNode {
       // Go through all of them and start them.
       let nodes = this.node.getAttribute(WriteItJS.WRITEIT_NEXT).split(",");
       nodes.forEach(node => {
-        let curNode = WriteItJS.startAnimationOfNode(node);
-        curNode.fromAnotherNode = true;
-        curNode.startAnimation();
+        WriteItJS.startAnimation(node, true);
       });
     } else {
       if (!this.node.hasAttribute(WriteItJS.WRITEIT_NO_BLINKING_WRITEIT))
