@@ -299,8 +299,7 @@ class WriteItNode {
             this.fromAnotherNode ||
             !this.node.hasAttribute(WriteItJS.WRITEIT_HAS_PREV)
         ) {
-            this.node.innerHTML = "";
-            // this.node.innerHTML = this.writeitChar;
+            this.node.innerHTML = "&nbsp;";
             if (this.node.hasAttribute(WriteItJS.WRITEIT_START_DELAY)) {
                 delay =
                     1000 *
@@ -366,7 +365,7 @@ class WriteItNode {
         // Wait if we need to wait at these position.
         if (this.waitIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index] != undefined && !this.wait) {
             let secsToWait = this.waitIndex[this.textsIndex < 0 ? "default" : this.textsIndex][this.index];
-            this.node.innerHTML = this.text.substring(0, this.index); // + this.writeitChar;
+            this.node.innerHTML = this.text.substring(0, this.index) + "&nbsp;";
             if (this.reverse && this.node.hasAttribute(WriteItJS.WRITEIT_WAIT_IN_REVERSE)) {
                 secsToWait = secsToWait * 1000;
                 this.index--;
@@ -381,12 +380,17 @@ class WriteItNode {
                 this.handleIterationEnd();
                 return;
             } else {
-                // this.node.innerHTML += this.writeitChar;
             }
-            this.timeout = this.setTimeout(() => {
-                this.wait = false;
+
+//            this.timeout = this.setTimeout(() => {
+//                this.wait = false;
+//                this.animate();
+//                }, secsToWait);
+
+            this.blinkCursor(secsToWait, ()=> {
                 this.animate();
-            }, secsToWait);
+            })
+
             return;
         }
         // return if already waiting!
@@ -416,8 +420,8 @@ class WriteItNode {
         // Browser may have added ending tag so ignore it.
         let str = this.text.substring(0, this.index);
 
-        // Add HTML without writeit.
-        this.node.innerHTML = str;
+        // Add HTML without writeit-char.
+        this.node.innerHTML = (str.trim().length != 0) ? str : "&nbsp;";
 
         // If reverse remove a character from last.
         if (this.reverse) {
@@ -480,6 +484,7 @@ class WriteItNode {
 
         // Update the InnerHTML
         this.node.innerHTML = str;
+
         this.nextIteration();
     }
 
@@ -510,6 +515,7 @@ class WriteItNode {
                 this.trigerNextAnimation(false, 0, true);
             }
         } else {
+
             if (this.node.hasAttribute(WriteItJS.WRITEIT_REPLACE_NEXT)) {
                 // Current Text has been writtern, Start reverse.
                 // if this is last text and node don't conatains writeit-loop then stop.
